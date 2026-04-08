@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高晔川 (Yechuan Gao) - 个人学术主页</title>
+    <style>
+        :root {
+            /* 颜色稍微调鲜艳，增加科技感与高级感 */
+            --primary-color: #0f52ba;   /* 鲜艳深邃的蓝宝石色 */
+            --highlight-color: #3b82f6; /* 更加明亮灵动的高亮蓝 */
+            --text-main: #1f2937;       /* 主文本色稍微加深，提高对比度 */
+            --text-muted: #64748b;      /* 辅助文本色，调整为更高级的石板灰 */
+            --bg-color: #f3f8ff;        /* 基础背景色微调偏蓝 */
+            --box-bg: rgba(255, 255, 255, 0.75); /* 核心！半透明背景配合毛玻璃特效，更通透 */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.75;
+            color: var(--text-main);
+            /* 顶级排版渲染：抗锯齿，字体更锐利优雅 */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            
+            /* 高级动态流光背景：提升基础底色的对比度 */
+            background: linear-gradient(-45deg, #e2e8f0, #c7d2fe, #bae6fd, #ddd6fe);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* 顶级背景特效：高对比度流体渐变与鲜艳动态光斑 */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            width: 70vw; height: 70vw;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(100px);
+            opacity: 0.65;
+            animation: floatingAura 15s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body::before {
+            top: -20%; left: -10%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(139, 92, 246, 0.6) 70%, transparent 100%);
+        }
+
+        body::after {
+            bottom: -20%; right: -10%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.8) 0%, rgba(192, 132, 252, 0.6) 70%, transparent 100%);
+            animation-delay: -7.5s;
+            animation-direction: alternate-reverse;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatingAura {
+            0% { transform: scale(0.8) translate(0, 0); }
+            50% { transform: scale(1.2) translate(10%, 10%); }
+            100% { transform: scale(0.9) translate(-5%, 15%); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 55px 65px;
+            background: var(--box-bg);
+            /* 顶级毛玻璃 (Glassmorphism) 质感 */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            /* 优雅的内发光与外阴影，提升空间悬浮感 */
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            border-left: 1px solid rgba(255, 255, 255, 0.9);
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(15, 82, 186, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            position: relative; /* 为语言切换按钮提供定位参考 */
+            z-index: 1;
+        }
+
+        /* 头部样式 */
+        .header {
+            border-bottom: 1px solid rgba(15, 82, 186, 0.1);
+            padding-bottom: 35px;
+            margin-bottom: 45px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.75rem;
+            color: var(--primary-color);
+            margin: 0 0 12px 0;
+            letter-spacing: 3px;
+            font-weight: 800;
+        }
+        .header p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin: 6px 0;
+        }
+        .contact-info {
+            margin-top: 18px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 2px 6px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .contact-info a:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--highlight-color);
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+        }
+
+        /* 模块标题 */
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid transparent;
+            /* 高级渐变下划线 */
+            border-image: linear-gradient(to right, var(--primary-color), var(--highlight-color), transparent) 1;
+            padding-bottom: 10px;
+            margin-top: 45px;
+            margin-bottom: 25px;
+            display: inline-block;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* 教育背景 */
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .edu-info {
+            flex: 1;
+        }
+        .edu-school {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary-color);
+        }
+        .edu-meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 2px;
+        }
+        .edu-date {
+            font-weight: 600;
+            color: var(--highlight-color);
+            font-size: 0.95rem;
+        }
+
+        /* 列表通用样式 */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 16px;
+            padding-left: 24px;
+            position: relative;
+        }
+        li::before {
+            content: "✦"; /* 更换为更优雅的四角星符号 */
+            color: var(--highlight-color);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+        }
+
+        /* 学术论文特殊样式 */
+        .me {
+            font-weight: 800;
+            color: var(--primary-color);
+            /* 增加微妙的名字背景高亮 */
+            background: linear-gradient(120deg, transparent 0%, rgba(59, 130, 246, 0.12) 50%, transparent 100%);
+            padding: 0 3px;
+            border-radius: 4px;
+        }
+        .journal {
+            font-style: italic;
+            color: #334155;
+            font-weight: 500;
+        }
+        .status {
+            font-weight: 700;
+            color: #e11d48;
+        }
+
+        /* 竞赛标签样式：微渐变立体质感 */
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-right: 10px;
+            vertical-align: middle;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .badge-nat {
+            background: linear-gradient(135deg, #fef3c7, #ffedd5);
+            color: #b45309;
+            border: 1px solid rgba(251, 146, 60, 0.2);
+        }
+        .badge-prov {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            color: #475569;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        /* 荣誉奖项 */
+        .honors-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 0;
+        }
+        .honors-list li {
+            padding: 6px 18px;
+            background: rgba(241, 245, 249, 0.6);
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin: 0;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            backdrop-filter: blur(4px);
+        }
+        .honors-list li::before {
+            display: none;
+        }
+
+        /* 空白占位符 */
+        .empty-placeholder {
+            color: #94a3b8;
+            font-style: italic;
+            font-size: 0.95rem;
+            background: rgba(248, 250, 252, 0.5);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px dashed rgba(203, 213, 224, 0.8);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container { padding: 35px 25px; margin: 20px auto; border-radius: 12px; }
+            .edu-item { flex-direction: column; padding: 0; }
+            .edu-date { text-align: left; margin-top: 5px; font-size: 0.9rem; }
+            .header h1 { font-size: 2.2rem; }
+        }
+
+        /* ================= 新增：中英文切换核心样式 ================= */
+        .lang-en { display: none; }
+        body.is-en .lang-zh { display: none; }
+        body.is-en .lang-en { display: inline; }
+        body.is-en div.lang-en, body.is-en p.lang-en { display: block; }
+        
+        #lang-btn {
+            position: absolute;
+            top: 30px;
+            right: 35px;
+            padding: 6px 18px;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: var(--primary-color);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        #lang-btn:hover {
+            background-color: var(--highlight-color);
+            color: #fff;
+            border-color: var(--highlight-color);
+            box-shadow: 0 6px 14px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            #lang-btn { top: 15px; right: 15px; padding: 4px 14px; font-size: 0.8rem; }
+        }
+
+        /* ================= 顶级动态交互特效 ================= */
+        /* 1. 名字流光溢彩特效 */
+        .header h1 {
+            background: linear-gradient(120deg, var(--primary-color) 0%, var(--highlight-color) 40%, #60a5fa 50%, var(--highlight-color) 60%, var(--primary-color) 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: textShine 6s linear infinite;
+        }
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
+
+        /* 2. 滚动视差显现动画 (配合底部JS) */
+        .header, .section {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .header.reveal-visible, .section.reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3. 列表项高级悬浮响应：优雅的缩进 */
+        .section ul:not(.honors-list) li {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+        .section ul:not(.honors-list) li:hover {
+            transform: translateX(6px);
+            color: #0f172a;
+        }
+
+        /* 4. 教育背景悬浮响应：带轻微背景色浮现 */
+        .edu-item:hover {
+            transform: translateX(6px);
+            background: rgba(248, 250, 252, 0.5);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        /* 5. 荣誉标签拟态上浮特效 */
+        .honors-list li {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .honors-list li:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.2);
+            background-color: var(--highlight-color);
+            color: #ffffff;
+            border-color: transparent;
+        }
+        /* ========================================================== */
+
+        /* ================= 新增：学术论文专属期刊与分区标签 ================= */
+        .paper-badge {
+            display: inline-flex;
+            align-items: center;
+            margin: 0 4px;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; /* 使用等宽字体增加学术严谨感 */
+            background: linear-gradient(135deg, rgba(15, 82, 186, 0.08), rgba(59, 130, 246, 0.15));
+            color: var(--primary-color);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.05);
+            vertical-align: baseline;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: default;
+        }
+
+        /* 鼠标悬浮点亮特效 */
+        .paper-badge:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* 针对 CCF 等会议的不同配色 (玫瑰红/珊瑚色) */
+        .paper-badge-ccf {
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.05), rgba(244, 63, 94, 0.12));
+            color: #e11d48;
+            border: 1px solid rgba(225, 29, 72, 0.25);
+        }
+
+        .paper-badge-ccf:hover {
+            background: linear-gradient(135deg, #e11d48, #f43f5e);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+        }
+        /* ================================================================ */
+        /* ================= 新增：顶级学术主页的左文右图布局 ================= */
+        /* ================= 新增：独立卡片式布局 + 内部滚动图片 ================= */
+        .paper-list {
+            padding-left: 0; /* 移除原本 ul 的缩进 */
+        }
+
+        .paper-item {
+            background: rgba(255, 255, 255, 0.5); /* 独立的微磨砂卡片底色 */
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            list-style: none; /* 移除之前的四角星符号 */
+        }
+
+        /* 卡片悬浮特效 */
+        .paper-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(15, 82, 186, 0.1);
+            background: rgba(255, 255, 255, 0.75);
+        }
+
+        .paper-text {
+            margin-bottom: 16px; /* 文字与下方滚动图片的间距 */
+            line-height: 1.6;
+        }
+
+
+
+
+
+
+        /* 核心：滚动图片视窗容器 显示图片专用*/
+        .scrollable-image-container {
+            width: 100%;
+            max-height: 260px; /* 设定视窗最高高度，超过此高度即出现滚动条 */
+            overflow-y: auto;  /* 允许垂直滚动 */
+            overflow-x: auto;  /* 如果图片极宽，也允许水平滚动 */
+            border-radius: 8px;
+            background: rgba(248, 250, 252, 0.8); /* 视窗内部底色 */
+            border: 1px solid rgba(203, 213, 224, 0.6);
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.04); /* 内阴影，制造“凹陷”的画框感 */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* 优化手机端滑动体验 */
+        }
+
+        /* 视窗内的图片 */
+        .scrollable-image-container img {
+            display: block;
+            width: 100%; /* 默认撑满卡片宽度，高度超长则向下滚动 */
+            min-width: 600px; /* 如果在手机上，强制保持一定宽度，触发左右滑动，保证图表清晰度 */
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* 高级定制滚动条样式 (仅针对 Webkit 浏览器) */
+        .scrollable-image-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .scrollable-image-container::-webkit-scrollbar-track {
+            background: rgba(241, 245, 249, 0.5);
+            border-radius: 4px;
+        }
+        .scrollable-image-container::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.5);
+            border-radius: 4px;
+        }
+        .scrollable-image-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7); /* 悬浮时变成主题蓝 */
+        }
+        /* ========================================================== */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <button id="lang-btn">English</button>
+
+    <div class="header">
+        <h1>
+            <span class="lang-zh">高晔川<span>
+            <span class="lang-en">Yechuan Gao</span>
+        </h1>
+        <p>
+            <span class="lang-zh">研究方向：开放词汇语义分割、城市形态重建、遥感图像语义分割</span>
+            <span class="lang-en">Research Interests: Open-Vocabulary Semantic Segmentation, Urban Morphology Reconstruction, Semantic Segmentation of Remote Sensing Images</span>
+        </p>
+        <p>
+            <span class="lang-zh">蒙纳士大学 信息学院</span>
+            <span class="lang-en">Monash University, Faculty of Information Technology (Master's Student)</span>
+        </p>
+        <div class="contact-info">
+            📧 Email: <a href="mailto:erpaogao@gmail.com">erpaogao@gmail.com</a> | 🔗 ORCID: <a href="https://orcid.org/0009-0005-1365-6046" target="_blank">0009-0005-1365-6046</a> | 💻 GitHub: <a href="https://github.com/Hitori-Bocchi" target="_blank">Hitori-Bocchi</a> | 
+            <span class="lang-zh">📍 墨尔本, 澳大利亚</span>
+            <span class="lang-en">📍 Melbourne, Australia</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>
+            <span class="lang-zh">教育背景</span>
+            <span class="lang-en">Education</span>
+        </h2>
+        <div class="edu-item">
+            <div class="edu-info">
+                <div class="edu-school">
+                    <span class="lang-zh">蒙纳士大学</span>
+                    <span class="lang-en">Monash University</span>
+                </div>
+                <div class="edu-meta">
+                    <span class="lang-zh">信息学院 | 人工智能 | 硕士 | 导师：Qiuhong Ke</span>
+                    <span class="lang-en">Faculty of Information Technology | Artificial Intelligence | Master | Advisor: Qiuhong Ke</span>
+                </div>
+            </div>
+            <div class="edu-date">2026.07 - 2028.06</div>
+        </div>
+        <div class="edu-item">
+            <div class="edu-info">
+                <div class="edu-school">
+                    <span class="lang-zh">齐鲁工业大学（山东省科学院）</span>
+                    <span class="lang-en">Qilu University of Technology (Shandong Academy of Sciences)</span>
+                </div>
+                <div class="edu-meta">
+                    <span class="lang-zh">计算机科学与技术学部 | 计算机科学与技术 | 本科 | 导师：高茜</span>
+                    <span class="lang-en">Faculty of Computer Science and Technology | Computer Science and Technology | Bachelor | Advisor: Qian Gao</span>
+                </div>
+            </div>
+            <div class="edu-date">2022.09 - 2026.06</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>
+            <span class="lang-zh">荣誉与奖项</span>
+            <span class="lang-en">Honors & Awards</span>
+        </h2>
+        <ul class="honors-list">
+            <li>
+                <span class="lang-zh">2024-2025本专科国家奖学金</span>
+                <span class="lang-en">"2024-2025 National Scholarship for Undergraduate and Graduate Students"</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>
+            <span class="lang-zh">学术论文</span>
+            <span class="lang-en">Publications</span>
+        </h2>
+        <ul class="paper-list">
+            <li class="paper-item">
+                <div class="paper-text">
+                    [1] Zhou, Z., <span class="me">Gao, Y.</span><sup>†</sup>, Shen, S., Huang, X., Tong, H., Li, Z., Wang, J. & Cheng, F. 
+                    Multi-temporal satellite parallax enables large-scale 3D urban reconstruction across global environments. 
+                    <span class="paper-badge">
+                        Nature Communications 
+                        <span class="lang-zh">(中科院1区 / Top)</span>
+                        <span class="lang-en">(JCR Q1 / Top)</span>
+                    </span> 
+                    (Unpublished manuscript, 2026).
+                    <sup>†:</sup> These authors contributed equally to this work.
+                </div>
+            </li>
+            
+            <li class="paper-item">
+                <div class="paper-text">
+                    [2] <span class="me">Gao, Y.</span>, Zhou, Z., Gao, Q., Shen, S., & Huang, X. (2026). GSMFormer: A Structure-Aware Framework with Agent-Gated Fusion for Building Semantic Segmentation. 
+                    <span class="paper-badge">
+                        IEEE Transactions on Geoscience and Remote Sensing (TGRS)
+                        <span class="lang-zh">(中科院1区 / Top)</span>
+                        <span class="lang-en">(JCR Q1 / Top)</span>
+                    </span>
+                    <span class="status">(Under Review)</span>
+                </div>
+                <div class="scrollable-image-container">
+                    <img src="./images/GSMFormer.png" alt="GSMFormer Network Structure">
+                </div>
+            </li>
+            
+            <li class="paper-item">
+                <div class="paper-text">
+                    [3] Zhou, Z., Cheng, F., Shen, S.,<span class="me"> Gao, Y.</span>, Li, Z., & Wang, J. (2025). Evaluating the Sustainable Development of Red Cultural Tourism in Yunnan, China, Using GIS and Machine Learning Methods. 
+                    <span class="paper-badge">Regional Science and Environmental Economics</span> 
+                    , 2(4), 32.
+                </div>
+                <div class="scrollable-image-container">
+                    <img src="./images/RSEE.jpg" alt="GIS Evaluation Methodology">
+                </div>
+            </li>
+            
+            <li class="paper-item">
+                <div class="paper-text">
+                    [4] Gao, Y., Yuan, P., Sun, H., Shi, X., <span class="me">Zhou, Z.</span>, & Shen, S. (2025). DTI-DDI Fusion: A Unified Deep Learning Framework for Drug Interaction Prediction. In 
+                    <span class="paper-badge paper-badge-ccf">
+                        CAIBDA 2025 
+                        <span class="lang-zh">(CCF-C类会议)</span>
+                        <span class="lang-en">(CCF Rank C)</span>
+                    </span> 
+                    (pp. 1042-1049). IEEE. 
+                </div>
+                <div class="scrollable-image-container">
+                    <img src="./images/DDIDTI.png" alt="DTI-DDI Fusion Deep Learning Framework">
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>
+            <span class="lang-zh">专利证书</span>
+            <span class="lang-en">Patents</span>
+        </h2>
+        <ul>
+            <li>
+                <span class="lang-zh">[1] 高茜, 张志雪, 樊军, <span class="me">高晔川</span>. 一种多视角语义量化推荐方法及系统[cite: 14, 15]. 中国发明专利, 申请号: 202511059023.4[cite: 5].</span>
+                <span class="lang-en">[1] Qian Gao, Zhixue Zhang, Jun Fan, <span class="me">Yechuan Gao</span>. A Multi-view Semantic Quantization Recommendation Method and System[cite: 14, 15]. Chinese Invention Patent, App No.: 202511059023.4[cite: 5].</span>
+            </li>
+            <li>
+                <span class="lang-zh">[2] 高茜, 王娜娜, 袁璞鑫, <span class="me">高晔川</span>. 一种基于多源特征增强的药物相互作用预测方法及系统. 中国发明专利, 申请号: 202410228481.5.</span>
+                <span class="lang-en">[2] Qian Gao, Nana Wang, Puxin Yuan, <span class="me">Yechuan Gao</span>. A Drug Interaction Prediction Method and System Based on Multi-source Feature Enhancement. Chinese Invention Patent, App No.: 202410228481.5.</span>
+            </li>
+            <li>
+                <span class="lang-zh">[3] 高茜, 刘卿, <span class="me">高晔川</span>. 一种基于自监督学习的三角形稳定节点网络用于个性化预测的方法. 中国发明专利, 申请号: 202410422227.9.</span>
+                <span class="lang-en">[3] Qian Gao, Qing Liu, <span class="me">Yechuan Gao</span>. A Personalized Prediction Method Based on Self-supervised Learning Triangle Stable Node Network. Chinese Invention Patent, App No.: 202410422227.9.</span>
+            </li>
+            <li>
+                <span class="lang-zh">[4] 陈天昊, 高茜, <span class="me">高晔川</span>, 袁璞鑫. 基于多通道超图卷积和异构信息增强的组推荐方法及系统. 中国发明专利, 申请号: 202410716307.5.</span>
+                <span class="lang-en">[4] Tianhao Chen, Qian Gao, <span class="me">Yechuan Gao</span>, Puxin Yuan. A Group Recommendation Method and System Based on Multi-channel Hypergraph Convolution and Heterogeneous Information Enhancement. Chinese Invention Patent, App No.: 202410716307.5.</span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    // 语言切换功能
+    const langBtn = document.getElementById('lang-btn');
+    let isEnglish = false;
+
+    langBtn.addEventListener('click', () => {
+        isEnglish = !isEnglish;
+        if (isEnglish) {
+            document.body.classList.add('is-en');
+            langBtn.textContent = '中文';
+        } else {
+            document.body.classList.remove('is-en');
+            langBtn.textContent = 'English';
+        }
+    });
+
+    // 顶级滚动视差显现特效 (Intersection Observer)
+    const observerOptions = {
+        threshold: 0.05,
+        rootMargin: "0px 0px -30px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-visible');
+                // 触发后取消观察，保证动画只执行一次
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // 监听所有需要加动画的元素
+    document.querySelectorAll('.header, .section').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
